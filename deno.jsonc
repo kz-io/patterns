@@ -1,0 +1,38 @@
+{
+  "lint": {
+    "rules": {
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "ban-untagged-todo",
+        "camelcase",
+        "default-param-last",
+        "eqeqeq",
+        "explicit-function-return-type",
+        "no-throw-literal"
+      ]
+    }
+  },
+  "fmt": {
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "proseWrap": "preserve",
+    "useTabs": false,
+    "singleQuote": true,
+    "semiColons": true
+  },
+  "tasks": {
+    "init": "deno run -A https://denopkg.com/kz-io/pkgsvc@dev/public/init.ts",
+    "fmt": "deno fmt",
+    "lint": "deno lint",
+    "test": "deno test",
+    "docs": "deno doc --json ./mod.ts > _docs.json",
+    // "bump-version": "deno run -A https://denopkg.com/partic11e/repo-svc/cli/bump_version.ts",
+    // "add-exception": "deno run -A https://denopkg.com/partic11e/repo-svc/cli/add_exception.ts",
+    // "add-feature": "deno run -A https://denopkg.com/partic11e/repo-svc/cli/add_feature.ts",
+    // "commit": "deno task pre-commit && deno run -A https://denopkg.com/partic11e/repo-svc/cli/commit.ts",
+    "pre-commit": "deno task test && deno task lint && deno task fmt && deno task docs",
+    "cache": "deno cache --reload --lock=lock.json --lock-write deps.ts"
+  }
+}
