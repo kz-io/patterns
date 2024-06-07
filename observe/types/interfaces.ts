@@ -1,6 +1,6 @@
 /**
  * @copyright 2020-2024 integereleven. All rights reserved. MIT license.
- * @file Interfaces for the module. For type aliases see ./type-aliases.ts.
+ * @file Interfaces for the module.
  */
 
 import type { IDisposable } from '../../dispose/mod.ts';

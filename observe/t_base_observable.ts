@@ -1,6 +1,6 @@
 /**
  * @copyright 2020-2024 integereleven. All rights reserved. MIT license.
- * @file Exports the AbstractObservable abstract class.
+ * @file Exports the TBaseObservable abstract class.
  */
 
 import { TSubscription } from './t_subscription.ts';
