@@ -1,6 +1,6 @@
 /**
  * @copyright 2020-2024 integereleven. All rights reserved. MIT license.
- * @file Exports the AbstractObserver abstract class.
+ * @file Exports the TAbstractObserver abstract class.
  */
 
 import type { IDisposable } from '../dispose/mod.ts';

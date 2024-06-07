@@ -3,9 +3,10 @@
  * @file This file exports the dispose function.
  */
 
+import type { Exception } from '@kz/core/exceptions';
+
 import { disposeInternal } from './_internal/mod.ts';
 
-import type { Exception } from '@kz/core/exceptions';
 import type { IDisposable } from './types/mod.ts';
 
 /**
