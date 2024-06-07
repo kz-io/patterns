@@ -8,7 +8,6 @@ import { TBaseObservable } from '../observe/mod.ts';
 import type {
   PubSubTopicMessage,
   PubSubTopics,
-  TPublisher,
   TSubscriber,
 } from './types/mod.ts';
 
@@ -33,8 +32,7 @@ import type {
  * ```
  */
 export class TBasePublisher<T extends PubSubTopics>
-  extends TBaseObservable<PubSubTopicMessage<T>>
-  implements TPublisher<T> {
+  extends TBaseObservable<PubSubTopicMessage<T>> {
   /**
    * Publishes a message to all subscribers.
    *
