@@ -3,7 +3,7 @@
  * @file Exports the TAbstractSubscriber abstract class.
  */
 
-import { TAbstractObserver } from '../observe/mod.ts';
+import { TAbstractObserver } from '../observer/mod.ts';
 import type {
   PubSubTopicMessage,
   PubSubTopics,

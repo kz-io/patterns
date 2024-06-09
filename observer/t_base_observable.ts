@@ -26,7 +26,9 @@ export class TBaseObservable<T> implements TObservable<T> {
    * @returns An {@link IDisposable} instance that can be used to unsubscribe the observer.
    */
   public subscribe(observer: TObserver<T>): IDisposable {
-    this.observers.push(observer);
+    if (!this.observers.includes(observer)) {
+      this.observers.push(observer);
+    }
 
     return new TSubscription(this.observers, observer);
   }

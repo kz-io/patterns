@@ -7,11 +7,12 @@ import { describe, it } from '@std/testing/bdd';
 import { assertSpyCalls, spy } from '@std/testing/mock';
 
 import {
-  PubSubTopicMessage,
+  type PubSubTopicMessage,
   TAbstractSubscriber,
   TBasePublisher,
 } from './mod.ts';
-import { TAbstractObserver } from '../observe/mod.ts';
+
+import { TAbstractObserver } from '../observer/mod.ts';
 
 type PubSubTopics = {
   TopicA: string;
@@ -58,7 +59,7 @@ class BasicObserver
 }
 
 describe('pubsub', () => {
-  describe('TBasePublisher', () => {
+  describe('module test', () => {
     const publisher = new TBasePublisher<PubSubTopics>();
     const sub1 = new MySubscriber(['TopicA', 'TopicB', 'TopicC']);
     const sub2 = new MySubscriber(['TopicA', 'TopicB', 'TopicC']);
@@ -66,11 +67,11 @@ describe('pubsub', () => {
     const sub4 = new MyTopicASubscriber(['TopicA']);
     const observer = new BasicObserver();
 
-    publisher.subscribe(sub1);
-    publisher.subscribe(sub2);
-    publisher.subscribe(sub3);
-    publisher.subscribe(sub4);
-    publisher.subscribe(observer);
+    const subscr1 = publisher.subscribe(sub1);
+    const subscr2 = publisher.subscribe(sub2);
+    const subscr3 = publisher.subscribe(sub3);
+    const subscr4 = publisher.subscribe(sub4);
+    const subscr5 = publisher.subscribe(observer);
 
     const messageA: PubSubTopicMessage<PubSubTopics> = [
       'TopicA',
@@ -106,6 +107,36 @@ describe('pubsub', () => {
       assertSpyCalls(spySubscriber3, 3);
       assertSpyCalls(spySubscriber4, 1);
       assertSpyCalls(spyObserver, 3); // listening to all as an observer
+
+      spySubscriber1.restore();
+      spySubscriber2.restore();
+      spySubscriber3.restore();
+      spySubscriber4.restore();
+      spyObserver.restore();
+    });
+
+    it('should not publish a message to unsubscribed subscribers', () => {
+      const spySubscriber1 = spy(sub1, 'next');
+      const spySubscriber2 = spy(sub2, 'next');
+      const spySubscriber3 = spy(sub3, 'next');
+      const spySubscriber4 = spy(sub4, 'next');
+      const spyObserver = spy(observer, 'next');
+
+      subscr1.dispose();
+      subscr2.dispose();
+      subscr3.dispose();
+      subscr4.dispose();
+      subscr5.dispose();
+
+      publisher.publish(messageA);
+      publisher.publish(messageB);
+      publisher.publish(messageC);
+
+      assertSpyCalls(spySubscriber1, 0);
+      assertSpyCalls(spySubscriber2, 0);
+      assertSpyCalls(spySubscriber3, 0);
+      assertSpyCalls(spySubscriber4, 0);
+      assertSpyCalls(spyObserver, 0);
 
       spySubscriber1.restore();
       spySubscriber2.restore();

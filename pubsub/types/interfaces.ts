@@ -3,7 +3,7 @@
  * @file Interfaces for the module. For type aliases, see ./type_aliases.ts.
  */
 
-import type { TObserver } from '../../observe/mod.ts';
+import type { TObserver } from '../../observer/mod.ts';
 import type { PubSubTopicMessage, PubSubTopics } from './type_aliases.ts';
 
 /**

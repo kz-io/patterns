@@ -37,7 +37,7 @@ export type PubSubTopics<
 };
 
 /**
- * Represents a message published to a topic.
+ * Represents a topical message published to subscribers.
  *
  * @typeParam T - The topics-to-type map of the types being observed.
  * @typeParam K - The topic this message is published to.

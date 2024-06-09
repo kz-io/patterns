@@ -3,7 +3,7 @@
  * @file Exports the TBasePublisher abstract class.
  */
 
-import { TBaseObservable } from '../observe/mod.ts';
+import { TBaseObservable } from '../observer/mod.ts';
 
 import type {
   PubSubTopicMessage,
