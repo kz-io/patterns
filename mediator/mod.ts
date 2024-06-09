@@ -58,7 +58,7 @@
  * }
  *
  * type DataBusRequest = Extract<keyof MediatorTopics, 'get_users' | 'get_user'>;
- * 
+ *
  * class UserDataHandler
  *   extends TAbstractParticipant<MediatorTopics, 'get_users' | 'get_user'> {
  *   public next(
