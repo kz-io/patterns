@@ -43,7 +43,7 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: kz-io/core
+          slug: kz-io/patterns
         
   cleanliness:
     runs-on: ${{ matrix.os }}
